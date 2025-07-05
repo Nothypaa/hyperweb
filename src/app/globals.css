@@ -25,8 +25,38 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Hide scrollbar completely */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 .font-system {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Invisible scrollbar like Warmwind - Complete removal */
+
+/* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for all elements */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox - hide scrollbar */
+html {
+  scrollbar-width: none;
+}
+
+/* Ensure scrolling still works */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
