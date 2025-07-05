@@ -419,42 +419,58 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
 
 export default function Home() {
   return (
-    <ClickSpark sparkColor="#FF8A80" sparkSize={12} sparkRadius={20} sparkCount={6} duration={500}>
+    <ClickSpark sparkColor="#B8E6E1" sparkSize={12} sparkRadius={20} sparkCount={6} duration={500}>
       <div className="min-h-screen bg-[#FAFAFA]">
         <Header />
-        <main className="max-w-6xl mx-auto px-8 py-16">
-          <div className="text-center">
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-              </svg>
+        <main className="px-8 py-16">
+          {/* Centered mockup frame container */}
+          <div 
+            className="max-w-[1200px] mx-auto relative rounded-3xl overflow-hidden shadow-2xl min-h-[600px] flex items-center justify-center"
+            style={{
+              backgroundImage: "url('/mockupimage/mockup.avif')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            {/* Very light overlay just for text readability */}
+            <div className="absolute inset-0 bg-black bg-opacity-10 rounded-3xl"></div>
+            
+            {/* Content inside the frame */}
+            <div className="relative z-10 text-center px-8 py-12">
+              <div className="w-20 h-20 bg-white bg-opacity-95 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+                </svg>
+              </div>
+              {/* H1 with very strong text shadow to stand out */}
+              <h1 className="text-5xl font-black text-white mb-6 tracking-tight leading-tight font-system" style={{ textShadow: '0 0 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.9)' }}>
+                <span>Boostez votre activité </span>
+                <span className="text-[#B8E6E1]" style={{ textShadow: '0 0 20px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.8)' }}>×10</span>
+                <span> avec </span>
+                <RotatingText
+                  texts={[
+                    'un site puissant',
+                    'une visibilité maximale',
+                    'une identité unique', 
+                    'une stratégie virale',
+                    'un impact immédiat'
+                  ]}
+                  mainClassName="text-[#B8E6E1]"
+                  staggerFrom="last"
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  exit={{ y: '-120%' }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden"
+                  transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+                  rotationInterval={2500}
+                />
+              </h1>
+              <p className="text-xl text-white mb-8 font-medium" style={{ textShadow: '0 0 15px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.8)' }}>
+                Uses all your apps for you.
+              </p>
             </div>
-            <h1 className="text-5xl font-black text-[#1a1a1a] mb-6 tracking-tight leading-tight font-system">
-              <span>Boostez votre activité </span>
-              <span className="text-[#FF8A80]">×10</span>
-              <span> avec </span>
-              <RotatingText
-                texts={[
-                  'un site puissant',
-                  'une visibilité maximale',
-                  'une identité unique', 
-                  'une stratégie virale',
-                  'un impact immédiat'
-                ]}
-                mainClassName="text-[#FF8A80]"
-                staggerFrom="last"
-                initial={{ y: '100%' }}
-                animate={{ y: 0 }}
-                exit={{ y: '-120%' }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden"
-                transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-                rotationInterval={2500}
-              />
-            </h1>
-            <p className="text-xl text-[#6B7280] mb-8 font-medium">
-              Uses all your apps for you.
-            </p>
           </div>
         </main>
       </div>

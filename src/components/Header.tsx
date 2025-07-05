@@ -24,8 +24,8 @@ const Header: React.FC = () => {
             Careers
           </button>
 
-          {/* Menu Button */}
-          <button className="w-10 h-10 bg-white text-[#6B7280] rounded-full flex items-center justify-center border border-[#E5E7EB] shadow-sm hover:scale-95 hover:shadow-md transition-all duration-200 ease-in-out ml-1">
+          {/* Menu Button - Ice Blue */}
+          <button className="w-10 h-10 bg-[#B8E6E1] text-[#1a1a1a] rounded-full flex items-center justify-center border border-[#B8E6E1] shadow-sm hover:scale-95 hover:shadow-md transition-all duration-200 ease-in-out ml-1">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -47,7 +47,7 @@ const Header: React.FC = () => {
             <button className="px-4 py-2 bg-white text-[#6B7280] rounded-[25px] text-sm font-medium border border-[#E5E7EB] shadow-sm hover:text-[#000000] hover:scale-95 hover:shadow-md transition-all duration-200 ease-in-out">
               Careers
             </button>
-            <button className="w-8 h-8 bg-white text-[#6B7280] rounded-full flex items-center justify-center border border-[#E5E7EB] shadow-sm hover:scale-95 hover:shadow-md transition-all duration-200 ease-in-out">
+            <button className="w-8 h-8 bg-[#B8E6E1] text-[#1a1a1a] rounded-full flex items-center justify-center border border-[#B8E6E1] shadow-sm hover:scale-95 hover:shadow-md transition-all duration-200 ease-in-out">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="12" x2="21" y2="12"></line>
