@@ -1,7 +1,94 @@
 'use client'
 
 import Header from '@/components/Header'
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useMemo } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface ScrollFloatProps {
+  children: React.ReactNode;
+  scrollContainerRef?: React.RefObject<HTMLElement>;
+  containerClassName?: string;
+  textClassName?: string;
+  animationDuration?: number;
+  ease?: string;
+  scrollStart?: string;
+  scrollEnd?: string;
+  stagger?: number;
+}
+
+const ScrollFloat: React.FC<ScrollFloatProps> = ({
+  children,
+  scrollContainerRef,
+  containerClassName = "",
+  textClassName = "",
+  animationDuration = 1,
+  ease = 'back.inOut(2)',
+  scrollStart = 'center bottom+=50%',
+  scrollEnd = 'bottom bottom-=40%',
+  stagger = 0.03
+}) => {
+  const containerRef = useRef<HTMLHeadingElement>(null);
+
+  const splitText = useMemo(() => {
+    const text = typeof children === 'string' ? children : '';
+    return text.split("").map((char, index) => (
+      <span className="char" key={index}>
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
+  }, [children]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const scroller =
+      scrollContainerRef && scrollContainerRef.current
+        ? scrollContainerRef.current
+        : window;
+
+    const charElements = el.querySelectorAll('.char');
+
+    gsap.fromTo(
+      charElements,
+      {
+        willChange: 'opacity, transform',
+        opacity: 0,
+        yPercent: 120,
+        scaleY: 2.3,
+        scaleX: 0.7,
+        transformOrigin: '50% 0%'
+      },
+      {
+        duration: animationDuration,
+        ease: ease,
+        opacity: 1,
+        yPercent: 0,
+        scaleY: 1,
+        scaleX: 1,
+        stagger: stagger,
+        scrollTrigger: {
+          trigger: el,
+          scroller,
+          start: scrollStart,
+          end: scrollEnd,
+          scrub: true
+        }
+      }
+    );
+  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
+
+  return (
+    <h2 ref={containerRef} className={`overflow-hidden ${containerClassName}`}>
+      <span className={`inline-block text-center leading-relaxed ${textClassName}`}>
+        {splitText}
+      </span>
+    </h2>
+  );
+};
 
 
 interface ClickSparkProps {
@@ -205,25 +292,37 @@ export default function Home() {
             />
             
             {/* Content inside the frame */}
-            <div className="relative z-10 flex items-center justify-center min-h-[600px]">
-              <div className="text-center px-8 py-12">
-                <div className="w-20 h-20 bg-white bg-opacity-95 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-                  </svg>
-                </div>
+            <div className="relative z-10 flex items-start justify-center min-h-[600px] pt-20">
+              <div className="text-center px-8">
                 {/* Static two-line headline (no animation) */}
                 <h1 className="text-5xl font-black text-white mb-6 tracking-tight leading-tight font-system text-center" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' }}>
                   <div>Boostez votre activité <span className="text-[#B8E6E1]">×10</span> avec une identité unique</div>
                   <div className="text-[#B8E6E1] mt-2">une visibilité maximale</div>
                 </h1>
                 <p className="text-xl text-white mb-8 font-medium" style={{ textShadow: '0 0 15px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.8)' }}>
-                  Uses all your apps for you.
+                  Moins de bla-bla, plus de résultats.
                 </p>
               </div>
             </div>
           </div>
         </main>
+
+        {/* Projects Section */}
+        <section className="py-24 px-8 bg-[#FAFAFA]">
+          <div className="max-w-6xl mx-auto">
+            <ScrollFloat
+              animationDuration={1.2}
+              ease="back.inOut(1.7)"
+              scrollStart="top bottom-=20%"
+              scrollEnd="bottom center"
+              stagger={0.04}
+              containerClassName="mb-16"
+              textClassName="text-4xl md:text-6xl font-black text-[#2C3E50] scroll-float-text"
+            >
+              On laisse nos projets parler pour nous.
+            </ScrollFloat>
+          </div>
+        </section>
       </div>
     </ClickSpark>
   );

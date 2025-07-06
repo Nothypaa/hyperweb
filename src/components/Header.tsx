@@ -9,7 +9,7 @@ const Header: React.FC = () => {
       <div className="hidden md:flex justify-between items-center px-24 py-24 max-w-7xl mx-auto">
         {/* Logo */}
         <div className="text-2xl font-black text-[#1a1a1a] font-system tracking-tight">
-          warmwind
+          HyperWeb
         </div>
 
         {/* Navigation */}
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
       <div className="md:hidden px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="text-xl font-black text-[#1a1a1a] font-system tracking-tight">
-            warmwind
+            HyperWeb
           </div>
           <div className="flex items-center gap-2">
             <button className="px-4 py-2 bg-white text-[#6B7280] rounded-[25px] text-sm font-medium border border-[#E5E7EB] shadow-sm hover:text-[#000000] hover:scale-95 hover:shadow-md transition-all duration-200 ease-in-out">
